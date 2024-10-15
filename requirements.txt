@@ -3,7 +3,6 @@ aiohttp
 asyncio
 cachetools
 cloudpickle
-enkanetworkv2.py
 python-magic
 python-magic-bin
 matplotlib
