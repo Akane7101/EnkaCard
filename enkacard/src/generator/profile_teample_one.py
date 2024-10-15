@@ -3,7 +3,7 @@ from PIL import ImageDraw,Image,ImageChops
 from ..utils import pill, git, options
 _of = git.ImageCache()
 
-url_banner = "https://api.ambr.top/assets/UI/namecard/{id}.png"
+url_banner = "https://gi.yatta.moe/assets/UI/namecard/{id}.png"
 url_splash = "https://enka.network/ui/{id}.png"
 
 class ProfileCard:
@@ -44,7 +44,7 @@ class ProfileCard:
         background = Image.new("RGBA", (757, 156), (0,0,0,0))
         background_avatar = Image.new("RGBA", (120, 120), (0,0,0,0))
         if self.profile.avatar.icon is None:
-            avatar = "https://api.ambr.top/assets/UI/UI_AvatarIcon_Paimon.png"
+            avatar = "https://avatarfiles.alphacoders.com/303/303136.jpg"
         else:
             avatar = self.profile.avatar.icon.url
         maska,ab_ac = await asyncio.gather(_of.avatar_mask, _of.ab_ac)
