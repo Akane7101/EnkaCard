@@ -189,9 +189,9 @@ class ENC:
                     gen_tools.append(generator.get(key.id))
                 continue
             if str(key.id) == "10000092":
-                key.image.banner.url = "https://api.ambr.top/assets/UI/UI_Gacha_AvatarImg_Gaming.png"
+                key.image.banner.url = "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Gaming.png"
             elif str(key.id) == "10000093":
-                key.image.banner.url = "https://api.ambr.top/assets/UI/UI_Gacha_AvatarImg_Liuyun.png"
+                key.image.banner.url = "https://gi.yatta.moe/assets/UI/UI_Gacha_AvatarImg_Liuyun.png"
                 
             art = None
             setting = 0
@@ -264,7 +264,7 @@ class ENC:
         }
         
         if self.enc.player.avatar.icon is None:
-            data["player"]["avatar"] = "https://api.ambr.top/assets/UI/UI_AvatarIcon_Paimon.png"
+            data["player"]["avatar"] = "https://gi.yatta.moe/assets/UI/UI_AvatarIcon_Paimon.png"
         else:
             data["player"]["avatar"] = self.enc.player.avatar.icon.url
 
