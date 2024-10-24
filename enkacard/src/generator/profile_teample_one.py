@@ -44,7 +44,7 @@ class ProfileCard:
         background = Image.new("RGBA", (757, 156), (0,0,0,0))
         background_avatar = Image.new("RGBA", (120, 120), (0,0,0,0))
         if self.profile.avatar.icon is None:
-            avatar = "https://avatarfiles.alphacoders.com/303/303136.jpg"
+            avatar = "https://api.ambr.top/assets/UI/UI_AvatarIcon_Paimon.png"
         else:
             avatar = self.profile.avatar.icon.url
         maska,ab_ac = await asyncio.gather(_of.avatar_mask, _of.ab_ac)
@@ -132,7 +132,7 @@ class ProfileCard:
         self.background,self.avatar = await asyncio.gather(self.get_background(),self.creat_avatar_info())
                
         task = []
-        for key in self.profile.characters_preview:
+        for key in self.profile.characters_preview[:8]:
             task.append(self.creat_charter(key))
         
         self.charter = await asyncio.gather(*task)
