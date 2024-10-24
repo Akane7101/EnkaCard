@@ -44,7 +44,7 @@ class ProfileCard:
         background = Image.new("RGBA", (757, 156), (0,0,0,0))
         background_avatar = Image.new("RGBA", (120, 120), (0,0,0,0))
         if self.profile.avatar.icon is None:
-            avatar = "https://api.ambr.top/assets/UI/UI_AvatarIcon_Paimon.png"
+            avatar = "https://cdn.donmai.us/sample/44/67/__lumine_genshin_impact_drawn_by_luna_luna610__sample-4467cec854adbd3618a3a21cc5d28c0c.jpg"
         else:
             avatar = self.profile.avatar.icon.url
         maska,ab_ac = await asyncio.gather(_of.avatar_mask, _of.ab_ac)
