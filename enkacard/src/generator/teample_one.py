@@ -116,10 +116,6 @@ class Creat:
         
         self.background.alpha_composite(background_tcv,(660,506))
     
-    async def add_logo(self):
-        logo = await _of.logo
-        self.background.alpha_composite(logo, (1163,1216))
-    
     async def collect_weapon(self):
         self.weapon = await weapon.Weapon(self.character.equipments[-1], self.lang).start()
     
@@ -149,7 +145,6 @@ class Creat:
             self.collect_sets(),
             self.collect_constant(),
             self.creat_name(),
-            self.add_logo(),
             self.collect_stat()
         ]
 
