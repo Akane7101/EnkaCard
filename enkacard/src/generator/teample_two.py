@@ -90,10 +90,6 @@ class Creat:
         self.background_name.alpha_composite(friends_icon,(328,50))
         x = font_15.getlength(friends)
         d.text((int(324-x),51), friends, font= font_15, fill=(255,255,255,255))
-       
-    async def add_logo(self):
-        logo = await _of.logo
-        self.background.alpha_composite(logo, (1108,710))
     
     async def creat_diagram(self):
         user_diagram = False
@@ -192,7 +188,6 @@ class Creat:
         self.background.alpha_composite(self.background_name_user,(1522,769))
         
         await self.add_tcr()
-        await self.add_logo()
     
     async def start(self,snow):
         await asyncio.gather(self.collect_background(),self.collect_weapon(),self.collect_constant(),self.collect_artifact(),self.collect_sets(),self.creat_name(),
