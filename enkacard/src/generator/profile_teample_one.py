@@ -41,44 +41,48 @@ class ProfileCard:
         
     
     async def creat_avatar_info(self):
-        background = Image.new("RGBA", (757, 156), (0,0,0,0))
-        background_avatar = Image.new("RGBA", (120, 120), (0,0,0,0))
+        background = Image.new("RGBA", (757, 156), (0, 0, 0, 0))
+        background_avatar = Image.new("RGBA", (120, 120), (0, 0, 0, 0))
         if self.profile.avatar.icon is None:
             avatar = "https://cdn.donmai.us/sample/44/67/__lumine_genshin_impact_drawn_by_luna_luna610__sample-4467cec854adbd3618a3a21cc5d28c0c.jpg"
         else:
             avatar = self.profile.avatar.icon.url
-        maska,ab_ac = await asyncio.gather(_of.avatar_mask, _of.ab_ac)
-        avatar = await pill.get_dowload_img(avatar, size= (120,120))
-        background_avatar.paste(avatar,(0,0),maska.convert("L"))
-        background.alpha_composite(background_avatar,(320,7))
-        background.alpha_composite(ab_ac,(274,23))
-        
+        maska, ab_ac = await asyncio.gather(_of.avatar_mask, _of.ab_ac)
+        avatar = await pill.get_dowload_img(avatar, size=(120, 120))
+        background_avatar.paste(avatar, (0, 0), maska.convert("L"))
+        background.alpha_composite(background_avatar, (320, 7))
+        background.alpha_composite(ab_ac, (274, 23))
+
         font_15 = await pill.get_font(15)
-        
+
         d = ImageDraw.Draw(background)
-        
+
         level = f"{self.lang['lvl']}: {self.profile.level}"
         Wlevel = f"{self.lang['WL']}: {self.profile.world_level}"
         if self.hide:
-            uid  = 'UID: Hide'
+            uid = "UID: Hide"
         else:
             uid = f"UID: {self.uid}"
-        
-        d.text((447,20), self.profile.nickname, font= font_15, fill=(255,255,255,255))
-        d.text((447,44), level, font= font_15, fill=(255,255,255,255))
-        d.text((447,68), Wlevel, font= font_15, fill=(255,255,255,255))
-        d.text((447,92), uid, font= font_15, fill=(255,255,255,255))
-        
+
+        d.text((447, 20), self.profile.nickname, font=font_15, fill=(255, 255, 255, 255))
+        d.text((447, 44), level, font=font_15, fill=(255, 255, 255, 255))
+        d.text((447, 68), Wlevel, font=font_15, fill=(255, 255, 255, 255))
+        d.text((447, 92), uid, font=font_15, fill=(255, 255, 255, 255))
+
         x = font_15.getlength(f"{self.profile.abyss_floor}-{self.profile.abyss_room}")
-        d.text((int(268-x),88), f"{self.profile.abyss_floor}-{self.profile.abyss_room}", font= font_15, fill=(255,255,255,255))
+        d.text((int(268 - x), 88), f"{self.profile.abyss_floor}-{self.profile.abyss_room}", font=font_15, fill=(255, 255, 255, 255))
         x = font_15.getlength(str(self.profile.achievement))
-        d.text((int(268-x),35), str(self.profile.achievement), font= font_15, fill=(255,255,255,255))
-        
-        signature = await pill.create_image_with_text(self.profile.signature, 15, max_width=744, color=(255, 255, 255, 255))
-        background.alpha_composite(signature,(int(380-signature.size[0]/2),135))
-        
+        d.text((int(268 - x), 35), str(self.profile.achievement), font=font_15, fill=(255, 255, 255, 255))
+
+        # Attempt to create the signature and skip on error
+        try:
+            signature = await pill.create_image_with_text(self.profile.signature, 15, max_width=744, color=(255, 255, 255, 255))
+            background.alpha_composite(signature, (int(380 - signature.size[0] / 2), 135))
+        except Exception as e:
+            print(f"Error creating signature: {e}")
+
         return background
-    
+
     async def creat_charter(self,key):
         background = Image.new("RGBA", (180, 263), (0,0,0,0))
         if self.img is None:
